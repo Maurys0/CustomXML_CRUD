@@ -17,7 +17,7 @@ Property Get xmlText(ByVal strRoot As String) as String
         If InStr(1, part.xml, strRoot) > 0 Then
             xmlText = part.xml
             Exit Property
-        Next
+        End if
     Next part
     
     xmlText = ""
@@ -63,6 +63,7 @@ Property Get Deletar(ByVal strRoot As String) As Boolean
     
     Deletar = False
 End Property
+
 
 
 
