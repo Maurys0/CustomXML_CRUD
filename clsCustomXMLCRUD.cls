@@ -7,57 +7,62 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
+
 Option Base 0
 
-Public strXMLData As String
-
-Property Get ArquivoAlvo(strRoot As String)
+Property Get xmlText(ByVal strRoot As String) as String
     Dim part As CustomXMLPart
 
     For Each part In ThisWorkbook.CustomXMLParts
         If InStr(1, part.xml, strRoot) > 0 Then
-            strXMLData = part.xml
+            xmlText = part.xml
             Exit Property
         Next
     Next part
+    
+    xmlText = ""
 End Property
 
-Property Get Existe(Optional ByVal strRoot) As Boolean
+Property Get Existe(ByVal strRoot) As Boolean
     Dim part As CustomXMLPart
     
     For Each part In ThisWorkbook.CustomXMLParts
         If InStr(1, part.xml, strRoot) > 0 Then
             Existe = True
+            Exit Property
         End If
     Next part
+    
+    Existe = False
 End Property
 
-Public Sub Criar(ByVal strXML As String)
+Property Get Criar(ByVal strXML As String) As Boolean
     Dim strRoot As String
     
     strRoot = Split(strXML, ">")(0) & ">"
     
     If Not Existe(strRoot) Then
         ThisWorkbook.CustomXMLParts.Add strXML
+        Criar = True
     Else
-        MsgBox "Já existe um arquivo XML " & strRoot & "!", vbOKOnly, "Arquivo existente"
+        Criar = False
     End If
-End Sub
+End Property
 
-Public Sub Deletar(ByVal strRoot As String)
+Property Get Deletar(ByVal strRoot As String) As Boolean
     Dim part As CustomXMLPart
     Dim encontrado As Boolean
     
     For Each part In ThisWorkbook.CustomXMLParts
         If InStr(1, part.xml, strRoot) > 0 Then
             part.Delete
-            encontrado = True
+            Deletar = True
+            Exit Property
         End If
     Next part
     
-    If Not encontrado Then
-        MsgBox "Não existe arquivo XML " & strRoot & "!", vbOKOnly, "Arquivo não existente"
-    End If
-End Sub
+    Deletar = False
+End Property
+
 
 
