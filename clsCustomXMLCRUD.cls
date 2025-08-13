@@ -10,33 +10,33 @@ Attribute VB_Exposed = False
 
 Option Base 0
 
-Property Get xmlText(ByVal strRoot As String) as String
+Public Function xmlText(ByVal strRoot As String) As String
     Dim part As CustomXMLPart
 
     For Each part In ThisWorkbook.CustomXMLParts
         If InStr(1, part.xml, strRoot) > 0 Then
             xmlText = part.xml
-            Exit Property
-        End if
+            Exit Function
+        End If
     Next part
     
     xmlText = ""
-End Property
+End Function
 
-Property Get Existe(ByVal strRoot) As Boolean
+Public Function Existe(ByVal strRoot) As Boolean
     Dim part As CustomXMLPart
     
     For Each part In ThisWorkbook.CustomXMLParts
         If InStr(1, part.xml, strRoot) > 0 Then
             Existe = True
-            Exit Property
+            Exit Function
         End If
     Next part
     
     Existe = False
-End Property
+End Function
 
-Property Get Criar(ByVal strXML As String) As Boolean
+Public Function Criar(ByVal strXML As String) As Boolean
     Dim strRoot As String
     
     strRoot = Split(strXML, ">")(0) & ">"
@@ -47,9 +47,9 @@ Property Get Criar(ByVal strXML As String) As Boolean
     Else
         Criar = False
     End If
-End Property
+End Function
 
-Property Get Deletar(ByVal strRoot As String) As Boolean
+Public Function Deletar(ByVal strRoot As String) As Boolean
     Dim part As CustomXMLPart
     Dim encontrado As Boolean
     
@@ -57,12 +57,12 @@ Property Get Deletar(ByVal strRoot As String) As Boolean
         If InStr(1, part.xml, strRoot) > 0 Then
             part.Delete
             Deletar = True
-            Exit Property
+            Exit Function
         End If
     Next part
     
     Deletar = False
-End Property
+End Function
 
 
 
