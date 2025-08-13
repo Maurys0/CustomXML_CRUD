@@ -11,16 +11,16 @@ Option Base 0
 
 Public strXMLData As String
 
-'Property Set ArquivoAlvo(strRoot As String)
-'    Dim part As CustomXMLPart
-'
-'    For Each part In ThisWorkbook.CustomXMLParts
-'        If InStr(1, part.xml, strRoot) > 0 Then
-'            strXMLData = part.xml
-'            Exit Property
-'        Next
-'    Next part
-'End Property
+Property Get ArquivoAlvo(strRoot As String)
+    Dim part As CustomXMLPart
+
+    For Each part In ThisWorkbook.CustomXMLParts
+        If InStr(1, part.xml, strRoot) > 0 Then
+            strXMLData = part.xml
+            Exit Property
+        Next
+    Next part
+End Property
 
 Property Get Existe(Optional ByVal strRoot) As Boolean
     Dim part As CustomXMLPart
@@ -59,4 +59,5 @@ Public Sub Deletar(ByVal strRoot As String)
         MsgBox "Não existe arquivo XML " & strRoot & "!", vbOKOnly, "Arquivo não existente"
     End If
 End Sub
+
 
