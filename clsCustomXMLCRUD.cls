@@ -11,14 +11,6 @@ Option Base 0
 
 Public strXMLData As String
 
-'Sub Class_Initialize(strRoot As String)
-'    If Not Existe(strRoot) Then
-'        Criar strRoot & Replace(strRoot, "<", "</")
-'    End If
-'
-'    ArquivoAlvo strRoot
-'End Sub
-
 'Property Set ArquivoAlvo(strRoot As String)
 '    Dim part As CustomXMLPart
 '
@@ -48,7 +40,7 @@ Public Sub Criar(ByVal strXML As String)
     If Not Existe(strRoot) Then
         ThisWorkbook.CustomXMLParts.Add strXML
     Else
-        MsgBox "Já existe um arquivo XML " & strRoot & "!", vbOKOnly, "Arquivo existente"
+        MsgBox "JÃ¡ existe um arquivo XML " & strRoot & "!", vbOKOnly, "Arquivo existente"
     End If
 End Sub
 
@@ -64,6 +56,7 @@ Public Sub Deletar(ByVal strRoot As String)
     Next part
     
     If Not encontrado Then
-        MsgBox "Não existe arquivo XML " & strRoot & "!", vbOKOnly, "Arquivo não existente"
+        MsgBox "NÃ£o existe arquivo XML " & strRoot & "!", vbOKOnly, "Arquivo nÃ£o existente"
     End If
 End Sub
+
